@@ -1,17 +1,18 @@
 #include <nodepp/nodepp.h>
 #include <nodepp/limit.h>
-#include <slory/tls.h>
+#include <slory/tcp.h>
 
 using namespace nodepp;
 
 void onMain(){
 
     slory_config_t args;
+
     args.host  = "localhost";
     args.port  = 8000;
-    args.delay = 100;
+    args.delay = 1;
 
-    auto slory = slory::tls( args );
+    auto slory = slory::tcp( args );
     
     slory.onProgress([=]( uint connections, ulong stamp ){
         console::log( "->", connections, stamp );
